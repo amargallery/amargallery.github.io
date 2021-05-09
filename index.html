@@ -1,8 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *,body{
+            margin: 0;
+            padding: 0;
+            background-color: rgb(3, 0, 19);
+        }
+        .container{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .stat{
+            stroke: #ccc;
+            stroke-width: 14;
+            fill: transparent;
+        }
+        .load{
+            fill: url(#Gradient);
+            stroke: url(#Gradient);
+            fill-opacity: 0;
+            stroke-width: 14;
+            stroke-dasharray: 628;
+            stroke-linecap: round;
+            transition: 0.5s linear;
+            animation: load 3s linear;
+        }
+        .num{
+            font-size: 60px;
+            fill: url(#Gradient);
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        @keyframes load {
+            0% { stroke-dashoffset: 638;}
+            20% { stroke-dashoffset: 502.4;}
+            40% { stroke-dashoffset: 376.8;}
+            60% { stroke-dashoffset: 251.2;}
+            80% { stroke-dashoffset: 125.6;}
+            100% { stroke-dashoffset: 0;}
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html"; charset="windows-1252">
+    <meta http-equiv="refresh" content="4;URL=https://amargalleryservice.infinityfreeapp.com">
+    <title>AmarGallery - an OpenGallery</title>
+</head>
+<body>
+    <div class="container">
+        <svg width="300" height="300" viewBox="0 0 300 300">
+            <defs>
+                <linearGradient id="Gradient" x1="0%" y1="0%"
+                x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#e100ff"/>
+                <stop offset="100%" stop-color="#009fff"/>
+                </linearGradient>
+            </defs>
+            <circle class="stat" cx="150" cy="150" r="100"/>
+            <circle class="load" cx="150" cy="150" r="100" transform="rotate(-90 150 150)"/>
+            <text class="num" stroke-width="3" x="150" y="55%" text-anchor="middle"></text>
+        </svg>
+    </div>
 
-<html>
-    <head>
-        <title>AmarGallery - an OpenGallery </title>
-        <meta http-equiv="Content-Type" content="text/html"; charset="windows-1252">
-        <meta http-equiv="refresh" content="0;URL=https://wpkf9zj8rgz8rafxrnkghw-on.drv.tw/www.amargallery.com/">
-    </head>
-  </html>
+<script type="text/javascript">
+    let text = document.querySelector(".num");
+    let load = document.querySelector(".load");
+
+    let numToText = 1;
+    let time = setInterval(
+        function(){
+            numToText += 1;
+            text.textContent = numToText + "%";
+            if(numToText === 100){
+                clearInterval(time);
+                load.style.fillOpacity = 1;
+                text.style.fill = "#fff";
+                text.style.fontSize = "20";
+                text.textContent = "AmarGallery";
+                text.textLength = "105";
+            }
+        }, 30);
+</script>
+</body>
+</html>
